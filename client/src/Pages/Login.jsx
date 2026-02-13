@@ -1,14 +1,19 @@
 import { Leaf, Mail, Lock } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function Login() {
   return (
     <div
-      className="min-h-screen flex items-center justify-center 
-                    bg-gradient-to-br from-green-50 via-white to-green-100 px-4"
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('https://plus.unsplash.com/premium_photo-1671379528670-1c9c98f556fe?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      }}
     >
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
       <div
-        className="w-full max-w-md bg-white rounded-3xl 
-                      shadow-2xl p-8 sm:p-10 relative"
+        className="w-full max-w-md bg-white/20 backdrop-blur-xl border border-white/30 
+                  rounded-3xl p-8 shadow-2xl text-white"
       >
         {/* Logo */}
         <div className="flex justify-center mb-6">
@@ -97,12 +102,12 @@ export default function Login() {
         {/* Sign Up Link */}
         <p className="text-sm text-center text-gray-500">
           Don’t have an account?
-          <a
-            href="#"
+          <NavLink
+            to="/signup"
             className="ml-2 text-green-600 font-medium hover:underline"
           >
             Sign Up
-          </a>
+          </NavLink>
         </p>
       </div>
     </div>
