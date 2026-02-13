@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "An online market",
+  "homepage": "https://github.com/krishna777-alt/WiseMarket#readme",
+  "bugs": {
+    "url": "https://github.com/krishna777-alt/WiseMarket/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krishna777-alt/WiseMarket.git"
+  },
+  "license": "ISC",
+  "author": "Thejas krishnan",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
