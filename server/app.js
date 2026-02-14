@@ -2,23 +2,34 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import dotenv from "dotenv";
+
+import clientRouter from "./routes/userRoute.js";
+
+dotenv.config({ path: "./.env" });
 
 const app = express();
 
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL || "http://localhost:5173", // ✅ must match React origin
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
   }),
 );
 
-// app.use(cookieParser);
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET_KEY,
-//     resave: false,
-//     saveUninitialized: true,
-//   }),
-// );
+app.use("/api/v1/client", clientRouter);
+
 export default app;
