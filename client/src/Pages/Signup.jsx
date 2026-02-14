@@ -52,8 +52,8 @@ function Signup() {
       setLoading(true);
       setError("");
 
-      const response = await API.post("/signup", formData);
-      // console.log("response:", response);
+      const response = await API.post("/client/signup", formData);
+      console.log("response:", response);
 
       setFormData({
         fullname: "",
