@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+
+import API from "../api/axios";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -10,28 +14,68 @@ function Signup() {
     phone: "",
   });
 
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   function handleChange(e) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   }
+  console.log("Form:", formData);
+
+  function validateForm() {
+    if (!formData.fullname || !formData.email || !formData.password) {
+      toast.warning("All fields are required");
+    }
+
+    if (formData.password.length < 6) {
+      // return ;
+      toast.warning("Password must be at least 6 characters");
+    }
+
+    return null;
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      const responce = await fetch("http://localhost:3000/api/v1/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "applycation/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(formData),
-      });
 
-      console.log(responce);
+    const validationError = validateForm();
+    if (validationError) {
+      setError(validationError);
+
+      return;
+    }
+    try {
+      setLoading(true);
+      setError("");
+
+      const response = await API.post("/signup", formData);
+      // console.log("response:", response);
+
+      setFormData({
+        fullname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        phone: "",
+      });
+      // alert("Signup successfull!");
+
+      if (response?.data?.status === 201) {
+        navigate("/login", {
+          state: { message: "Account registerd successfully" },
+        });
+      }
+      toast.success();
     } catch (err) {
+      setError(err.response?.data.message || "Something went wrong");
+      toast.error(err.response?.data.message || "Something went wrong");
       console.log("err:", err.message);
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -62,7 +106,7 @@ function Signup() {
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">
           Create Your Account 🌿
         </h2>
-
+        {/* {error && <p>{error}</p>} */}
         <p className="text-sm text-center text-gray-500 mb-8">
           Join WiseMarket and start shopping fresh today
         </p>
@@ -71,6 +115,7 @@ function Signup() {
           onChange={handleChange}
           onSubmit={handleSubmit}
           formData={formData}
+          loading={loading}
         />
         <p className="text-sm text-center text-gray-500 mt-6">
           Already have an account?
@@ -86,7 +131,7 @@ function Signup() {
   );
 }
 
-function Form({ onChange, onSubmit, formData }) {
+function Form({ onChange, onSubmit, formData, loading }) {
   return (
     <form className="space-y-5" onSubmit={onSubmit}>
       <div>
@@ -94,9 +139,10 @@ function Form({ onChange, onSubmit, formData }) {
           Full name
         </label>
         <input
-          type="fullname"
+          type="text"
+          name="fullname"
           onChange={onChange}
-          value={formData.name}
+          value={formData.fullname}
           className="w-full px-4 py-3 rounded-xl border border-gray-200 
                  focus:ring-2 focus:ring-green-500/40 
                  focus:border-green-500 outline-none transition"
@@ -109,8 +155,9 @@ function Form({ onChange, onSubmit, formData }) {
         </label>
         <input
           type="tel"
+          name="phone"
           onChange={onChange}
-          value={formData.name}
+          value={formData.phone}
           placeholder="+1 234 567 890"
           className="w-full px-4 py-3 rounded-xl border border-gray-200 
                  focus:ring-2 focus:ring-green-500/40 
@@ -125,8 +172,9 @@ function Form({ onChange, onSubmit, formData }) {
         </label>
         <input
           type="email"
+          name="email"
           onChange={onChange}
-          value={formData.name}
+          value={formData.email}
           placeholder="you@example.com"
           className="w-full px-4 py-3 rounded-xl border border-gray-200 
                  focus:ring-2 focus:ring-green-500/40 
@@ -141,8 +189,9 @@ function Form({ onChange, onSubmit, formData }) {
         </label>
         <input
           type="password"
+          name="password"
           onChange={onChange}
-          value={formData.name}
+          value={formData.password}
           placeholder="Enter password"
           className="w-full px-4 py-3 rounded-xl border border-gray-200 
                  focus:ring-2 focus:ring-green-500/40 
@@ -157,8 +206,9 @@ function Form({ onChange, onSubmit, formData }) {
         </label>
         <input
           type="password"
+          name="confirmPassword"
           onChange={onChange}
-          value={formData.name}
+          value={formData.confirmPassword}
           placeholder="Confirm password"
           className="w-full px-4 py-3 rounded-xl border border-gray-200 
                  focus:ring-2 focus:ring-green-500/40 
@@ -169,6 +219,7 @@ function Form({ onChange, onSubmit, formData }) {
 
       <button
         type="submit"
+        disabled={loading}
         className="w-full py-3 rounded-xl 
                bg-gradient-to-r from-green-500 to-emerald-600 
                text-white font-semibold 
@@ -176,7 +227,7 @@ function Form({ onChange, onSubmit, formData }) {
                hover:scale-[1.02] 
                transition-all duration-300"
       >
-        Sign Up
+        {loading ? "Registering..." : "Sign Up"}
       </button>
     </form>
   );

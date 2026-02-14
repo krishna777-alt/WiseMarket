@@ -4,10 +4,12 @@ import CategorySection from "./Components/CategorySection";
 import Layout from "./Components/Layout";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

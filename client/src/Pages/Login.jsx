@@ -1,7 +1,23 @@
 import { Leaf, Mail, Lock } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function Login() {
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.message) {
+      toast.success(location.state.message);
+      // window.history.replaceState({}, document.title);
+      navigate(location.pathname, { replace: true });
+    }
+    return () => {};
+  }, [location, navigate]);
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center"
