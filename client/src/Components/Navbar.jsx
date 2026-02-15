@@ -26,8 +26,8 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-3 flex items-center gap-4">
-        <a
-          href="/"
+        <NavLink
+          to="/"
           className="flex items-center gap-3 shrink-0 group transition-all duration-300"
         >
           {/* Icon Badge */}
@@ -56,7 +56,7 @@ const Navbar = () => {
               Market
             </span>
           </span>
-        </a>
+        </NavLink>
 
         {/* Search */}
         <div className="flex-1 max-w-xl hidden md:block">
@@ -94,10 +94,36 @@ const Navbar = () => {
 
         {/* Right actions */}
         <div className="flex items-center gap-1 sm:gap-3 ml-auto">
-          <a className="hidden lg:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted">
+          <NavLink
+            to="/"
+            className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted"
+          >
+            {/* <User className="h-4 w-4" /> */}
+            Home
+          </NavLink>
+          <NavLink
+            to="/orders"
+            className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted"
+          >
+            {/* <User className="h-4 w-4" /> */}
+            Orders
+          </NavLink>
+          <NavLink
+            to="/productUpload"
+            className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted"
+          >
+            {/* <User className="h-4 w-4" /> */}
+            Sell products
+          </NavLink>
+
+          <NavLink
+            to="/location"
+            className="hidden lg:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted"
+          >
             <MapPin className="h-4 w-4" />
             <span>Location</span>
-          </a>
+          </NavLink>
+
           {!user ? (
             <NavLink
               to="/login"

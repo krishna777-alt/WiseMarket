@@ -8,6 +8,8 @@ import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./Auth/AuthContext";
 import Cart from "./Pages/Cart";
 import Forbidden403 from "./Pages/Forbidden403";
+import ProductUpload from "./Pages/ProductUpload";
+import OrdersPage from "./Pages/Order";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/productUpload" element={<ProductUpload />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
