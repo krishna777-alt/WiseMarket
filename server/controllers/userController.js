@@ -3,6 +3,10 @@ import bcrypt from "bcryptjs";
 import User from "../models/userModel.js";
 import generateTokens from "../utils/generateTokens.js";
 
+export const me = function (req, res) {
+  res.status(200).json({ user: req.user });
+};
+
 export const login = async function (req, res) {
   try {
     const { email, password } = req.body;
@@ -107,5 +111,27 @@ export const signup = async function (req, res) {
       .status(500)
       .json({ status: 500, message: "Server error", ERROR: err.message });
     console.log("ERROR:", err.message);
+  }
+};
+
+export const logout = function (req, res) {
+  try {
+    res.cookie("accessToken", "", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      expries: new Date(0),
+    });
+
+    res.cookie("refreshToken", "", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      expries: new Date(0),
+    });
+
+    res.status(200).json({ status: 200, message: "Logged out successfully" });
+  } catch (error) {
+    res.status(500).json({ status: 500, message: "Logout Failed" });
   }
 };
