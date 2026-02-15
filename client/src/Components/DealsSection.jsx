@@ -66,57 +66,58 @@ const deals = [
 
 const DealsSection = () => {
   return (
-    <section class="bg-gray-50 py-16">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex items-center justify-between mb-10">
+    <section className="bg-gray-50 py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between mb-10">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-gray-900">
               Today’s Best Deals 🔥
             </h2>
-            <p class="text-gray-500 mt-1">Grab them before they're gone</p>
+            <p className="text-gray-500 mt-1">Grab them before they're gone</p>
           </div>
 
           <a
             href="#"
-            class="text-green-600 font-medium hover:underline hidden sm:block"
+            className="text-green-600 font-medium hover:underline hidden sm:block"
           >
             View All →
           </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {deals.map((item) => (
-            <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden">
-              <div class="relative">
-                <span class="absolute top-3 left-3 bg-yellow-400 text-xs font-bold px-3 py-1 rounded-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {deals.map((item, key) => (
+            <div className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden">
+              <div className="relative">
+                <span className="absolute top-3 left-3 bg-yellow-400 text-xs font-bold px-3 py-1 rounded-full">
                   {item.discount}% OFF
                 </span>
 
                 <img
                   src={item.image}
+                  key={key}
                   className="w-full h-40 object-cover"
                   alt="Bananas"
                 />
               </div>
 
-              <div class="p-4 space-y-2">
-                <div class="flex items-center gap-1 text-sm text-gray-600">
+              <div className="p-4 space-y-2">
+                <div className="flex items-center gap-1 text-sm text-gray-600">
                   ⭐ <span>{item.rating}</span>
                 </div>
 
-                <h3 class="font-semibold text-gray-800">{item.name}</h3>
+                <h3 className="font-semibold text-gray-800">{item.name}</h3>
 
-                <p class="text-sm text-gray-500">{item.weight}</p>
+                <p className="text-sm text-gray-500">{item.weight}</p>
 
-                <div class="flex items-center justify-between mt-3">
+                <div className="flex items-center justify-between mt-3">
                   <div>
-                    <div class="font-bold text-lg text-gray-900">
+                    <div className="font-bold text-lg text-gray-900">
                       ₹{item.price}
-                      <span class="text-sm text-gray-400 line-through ml-1">
+                      <span className="text-sm text-gray-400 line-through ml-1">
                         ₹{item.originalPrice}
                       </span>
                     </div>
-                    <p class="text-xs text-green-600 font-medium">
+                    <p className="text-xs text-green-600 font-medium">
                       You save ₹{item.originalPrice - item.price}
                     </p>
                   </div>

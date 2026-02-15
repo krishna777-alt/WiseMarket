@@ -8,12 +8,20 @@ import {
   Menu,
   X,
 } from "lucide-react";
+
 import AuthModal from "../Auth/AuthModel";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+
+import { AuthContext } from "../Auth/AuthContext";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [numItems, setNumItems] = useState(0);
+  const auth = useContext(AuthContext);
+  // if (!auth) return;
+  const { user } = auth;
 
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
@@ -90,18 +98,28 @@ const Navbar = () => {
             <MapPin className="h-4 w-4" />
             <span>Location</span>
           </a>
-          <NavLink
-            to="/login"
-            className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted"
-          >
-            <User className="h-4 w-4" />
-            Login
-          </NavLink>
+          {!user ? (
+            <NavLink
+              to="/login"
+              className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted"
+            >
+              <User className="h-4 w-4" />
+              Login
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/account"
+              className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5 rounded-lg hover:bg-muted"
+            >
+              <User className="h-4 w-4" />
+              Account
+            </NavLink>
+          )}
           <a className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-muted relative">
             <Heart className="h-5 w-5" />
           </a>
 
-          <ShopingCart />
+          <ShopingCart itemCount={numItems} />
           <button
             className="p-2 md:hidden text-muted-foreground hover:text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -132,10 +150,10 @@ const Navbar = () => {
   );
 };
 
-function ShopingCart() {
+function ShopingCart({ itemCount }) {
   return (
-    <a
-      href="/cart"
+    <NavLink
+      to="/cart"
       className="relative flex items-center justify-center p-2.5 
       rounded-xl 
              text-gray-600 
@@ -167,9 +185,9 @@ function ShopingCart() {
                    transition-transform duration-300 
                    group-hover:scale-110"
       >
-        3
+        {itemCount}
       </span>
-    </a>
+    </NavLink>
   );
 }
 

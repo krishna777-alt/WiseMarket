@@ -3,24 +3,24 @@ import { ShoppingCart, Gift } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section class="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-100">
-      <div class="absolute -top-20 -left-20 w-72 h-72 bg-green-300 rounded-full blur-3xl opacity-30"></div>
-      <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-yellow-200 rounded-full blur-3xl opacity-30"></div>
+    <section className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-100">
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-green-300 rounded-full blur-3xl opacity-30"></div>
+      <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-yellow-200 rounded-full blur-3xl opacity-30"></div>
 
-      <div class="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-        <div class="space-y-8 text-center md:text-left">
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+      <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+        <div className="space-y-8 text-center md:text-left">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
             Fresh Groceries
-            <span class="text-green-600 block">Delivered Smarter</span>
+            <span className="text-green-600 block">Delivered Smarter</span>
           </h1>
 
-          <p class="text-lg text-gray-600 max-w-xl mx-auto md:mx-0">
+          <p className="text-lg text-gray-600 max-w-xl mx-auto md:mx-0">
             Discover farm-fresh vegetables, juicy fruits, dairy essentials, and
             daily needs delivered straight to your doorstep with unbeatable
             savings.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
             <a
               href="#shop"
               className="relative inline-flex items-center justify-center
@@ -50,7 +50,7 @@ const HeroSection = () => {
             </a>
             <a
               href="#offers"
-              class="inline-flex items-center justify-center
+              className="inline-flex items-center justify-center
             px-8 py-4
             font-semibold
             rounded-2xl
@@ -62,28 +62,28 @@ const HeroSection = () => {
             hover:bg-green-600 hover:text-white
             hover:shadow-xl hover:scale-105"
             >
-              <span class="flex items-center gap-2">🎁 View Offers</span>
+              <span className="flex items-center gap-2">🎁 View Offers</span>
             </a>
           </div>
 
-          <div class="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-600 pt-6">
-            <div class="flex items-center gap-2">
+          <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-600 pt-6">
+            <div className="flex items-center gap-2">
               🚚 <span>Free Delivery Above ₹499</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div className="flex items-center gap-2">
               ⚡ <span>30 Min Express Delivery</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div className="flex items-center gap-2">
               🥬 <span>100% Fresh Guarantee</span>
             </div>
           </div>
         </div>
 
-        <div class="relative flex justify-center">
+        <div className="relative flex justify-center">
           <img
             src="https://images.unsplash.com/photo-1542838132-92c53300491e"
             alt="Fresh Groceries"
-            class="rounded-3xl shadow-2xl w-full max-w-lg object-cover"
+            className="rounded-3xl shadow-2xl w-full max-w-lg object-cover"
           />
         </div>
       </div>
