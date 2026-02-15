@@ -69,18 +69,30 @@ The goal of WiseMarket is to deliver a fast, responsive, and visually clean onli
 
 WiseMarket/
 ├── client/ # React frontend
+
 │ ├── src/
+
 │ │ ├── components/
+
 │ │ ├── pages/
+
 │ │ ├── layouts/
+
 │ │ └── services/
+
 │
 ├── server/ # Node + Express backend
+
 │ ├── controllers/
+
 │ ├── models/
+
 │ ├── routes/
+
 │ ├── middlewares/
+
 │ └── utils/
+
 │
 └── README.md
 
@@ -113,7 +125,7 @@ NODE_ENV=
 ```bash
 git clone https://github.com/your-username/wisemarket.git
 cd wisemarket
-```
+`
 
 cd server
 npm install
@@ -128,3 +140,4 @@ node server
 #run client
 cd client
 npm run dev
+```
