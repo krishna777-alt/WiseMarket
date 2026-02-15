@@ -1,0 +1,130 @@
+# 🛒 WiseMarket – Modern MERN Grocery Web Application
+
+WiseMarket is a full-stack modern grocery e-commerce web application built using the MERN stack.  
+It provides a smooth shopping experience for users and a powerful dashboard for sellers to manage products, inventory, and orders.
+
+The goal of WiseMarket is to deliver a fast, responsive, and visually clean online grocery platform with real-world features like carts, orders, authentication, and product management.
+
+---
+
+## ✨ Features
+
+### 🧑‍🤝‍🧑 User Features
+
+- User authentication (Login / Signup)
+- Browse products by category
+- Search for products
+- Add to cart & manage quantities
+- View cart total in real-time
+- Place orders
+- Track order history
+- Modern UI with responsive design
+- Protected routes (403 / 401 handling)
+
+### 🛍 Seller Features
+
+- Product upload & management
+- Image upload for products
+- Stock & inventory control
+- Discount pricing support
+- Featured products
+- Product categories
+- Seller dashboard UI
+
+### ⚙ Core Features
+
+- JWT authentication
+- Role-based access control (User / Seller / Admin)
+- Secure API
+- Cart & order system
+- MongoDB schema validation
+- Modern Tailwind UI
+- Responsive layout
+- Loading states & error pages
+- Optimized UX
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+
+- React
+- Tailwind CSS
+- Axios
+- React Router
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Multer / Cloudinary (for image uploads)
+
+---
+
+## 🗂 Project Structure
+
+WiseMarket/
+├── client/ # React frontend
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── layouts/
+│ │ └── services/
+│
+├── server/ # Node + Express backend
+│ ├── controllers/
+│ ├── models/
+│ ├── routes/
+│ ├── middlewares/
+│ └── utils/
+│
+└── README.md
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file inside `server/`:
+
+DATABASE=mongodb+srv://:<PASSWORD>@cluster1.jjzqwkx.mongodb.net/wiseMarket
+PASSWORD=
+CLIENT_URL=http://localhost:5173
+PORT=3000
+
+SESSION_SECRET=
+JWT_SECRET_KEY=
+JWT_REFRESH_SECRET=
+
+JWT_TOKEN_EXPRIES=
+JWT_REFRESH_EXPRIES=
+
+NODE_ENV=
+
+---
+
+## 🚀 Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/your-username/wisemarket.git
+cd wisemarket
+```
+
+cd server
+npm install
+
+cd client
+npm install
+
+#run server
+cd server
+node server
+
+#run client
+cd client
+npm run dev
