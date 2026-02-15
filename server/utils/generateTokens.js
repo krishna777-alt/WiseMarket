@@ -12,9 +12,4 @@ const generateRefreshToken = (userId) => {
   });
 };
 
-// module.exports = {
-//   generateAccessToken,
-//   generateRefreshToken,
-// };
-
 export default { generateAccessToken, generateRefreshToken };
