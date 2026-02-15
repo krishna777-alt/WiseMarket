@@ -1,7 +1,4 @@
-<img width="1324" height="583" alt="Screenshot from 2026-02-13 16-00-28" src="https://github.com/user-attachments/assets/8593d0cc-64e2-4d4d-a9c6-bc4da67ef767" />
-<img width="1324" height="583" alt="Screenshot from 2026-02-13 16-00-28" src="https://github.com/user-attachments/assets/517b7314-0b7c-4527-8bce-9669e19385f4" />
-<img width="251" height="103" alt="Screenshot from 2026-02-13 15-57-47" src="https://github.com/user-attachments/assets/bcabd069-3750-4fee-bbd2-6f471295891a" />
-<img width="1324" height="63" alt="Screenshot from 2026-02-13 15-35-39" src="https://github.com/user-attachments/assets/02d74e6e-f73b-469d-8392-ed07e370e829" />
+
 # 🛒 WiseMarket – Modern MERN Grocery Web Application
 
 WiseMarket is a full-stack modern grocery e-commerce web application built using the MERN stack.  
