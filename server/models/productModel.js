@@ -8,11 +8,11 @@ const productSchema = new mongoose.Schema(
       trim: true,
       maxlength: [100, "Name is too long"],
     },
-    slug: {
-      type: String,
-      lowercase: true,
-      unique: true,
-    },
+    // slug: {
+    //   type: String,
+    //   lowercase: true,
+    //   unique: true,
+    // },
     description: {
       type: String,
       required: [true, "Please provide a description"],
@@ -55,10 +55,10 @@ const productSchema = new mongoose.Schema(
       required: [true, "Stock quantity is required"],
       default: 0,
     },
-    images: [String], // Array of URLs
+    image: String, // Array of URLs
     isFeatured: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: "off",
     },
 
     ratingsAverage: {
