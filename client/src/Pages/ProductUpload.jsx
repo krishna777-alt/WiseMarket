@@ -22,7 +22,7 @@ const ProductUpload = () => {
     price: "",
     discountPrice: "",
     stock: "",
-    featured: false,
+    featured: "",
     description: "",
   });
   const [image, setImage] = useState(null);
@@ -76,7 +76,7 @@ const ProductUpload = () => {
         price: "",
         discountPrice: "",
         stock: "",
-        featured: false,
+        featured: "",
         description: "",
       });
       setImage(null);
