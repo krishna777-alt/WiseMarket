@@ -1,5 +1,6 @@
 import multer from "multer";
 import path from "path";
+import Product from "../models/productModel.js";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,13 +25,38 @@ const upload = multer({ storage, fileFilter });
 //   //   { name: "galleryImages", maxCount: 10 },
 // ]);
 export const uploadProductImage = upload.single("image");
-export const uploadProduct = function (req, res) {
+export const uploadProduct = async function (req, res) {
   try {
     console.log("FILE:", req.file);
     console.log("BODY", req.body);
-    res
-      .status(201)
-      .json({ message: "Success", Data: req.body, image: req.file });
+    const image = req.file.filename;
+    const {
+      name,
+      brand,
+      category,
+      unit,
+      weight,
+      price,
+      discountPrice,
+      stock,
+      featured,
+      description,
+    } = req.body;
+
+    // const product = await Product.create({
+    //   name,
+    //   brand,
+    //   category,
+    //   unit,
+    //   weight,
+    //   price,
+    //   discountPrice,
+    //   stock,
+    //   isFeatured: featured,
+    //   description,
+    //   image,
+    // });
+    res.status(201).json({ message: "Success", Data: [featured, category] });
   } catch (err) {
     res.status(500).json({ status: 500, message: err.message });
   }
