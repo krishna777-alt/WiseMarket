@@ -3,12 +3,16 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import dotenv from "dotenv";
+import multer from "multer";
 
-import clientRouter from "./routes/userRoute.js";
+import userRouter from "./routes/userRoute.js";
+import clientRouter from "./routes/clientRoute.js";
 
 dotenv.config({ path: "./.env" });
 
 const app = express();
+
+app.use("static", express.static("/uploads"));
 
 app.use(express.json());
 app.use(
@@ -30,6 +34,7 @@ app.use(
   }),
 );
 
+app.use("/api/v1/user", userRouter);
 app.use("/api/v1/client", clientRouter);
 
 export default app;
