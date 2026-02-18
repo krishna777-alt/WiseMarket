@@ -83,7 +83,7 @@ export default function Login() {
     try {
       (setLoading(true), setError(""));
 
-      const response = await API.post("/client/login", formData);
+      const response = await API.post("/user/login", formData);
 
       console.log("response:", response.data.status);
 
