@@ -52,7 +52,7 @@ function Signup() {
       setLoading(true);
       setError("");
 
-      const response = await API.post("/client/signup", formData);
+      const response = await API.post("/user/signup", formData);
       console.log("response:", response);
 
       setFormData({
