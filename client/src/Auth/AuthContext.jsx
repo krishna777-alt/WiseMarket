@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 
 const logout = async () => {
   try {
-    await API.post("/client/logout");
+    await API.post("/user/logout");
   } catch (error) {
     toast.error("Logout Failed!", error.message);
   }
@@ -21,7 +21,7 @@ export const AuthProvider = function ({ children }) {
   const checkAuth = async () => {
     try {
       setLoading(true);
-      const res = await API.get("/client/me");
+      const res = await API.get("/user/me");
       setUser(res.data?.user);
     } catch {
       setUser(null);
