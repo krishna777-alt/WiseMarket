@@ -1,6 +1,7 @@
 import multer from "multer";
 import path from "path";
 import Product from "../models/productModel.js";
+import Category from "../models/categoryModel.js";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -42,22 +43,29 @@ export const uploadProduct = async function (req, res) {
       featured,
       description,
     } = req.body;
-
-    // const product = await Product.create({
-    //   name,
-    //   brand,
-    //   category,
-    //   unit,
-    //   weight,
-    //   price,
-    //   discountPrice,
-    //   stock,
-    //   isFeatured: featured,
-    //   description,
-    //   image,
-    // });
-    res.status(201).json({ message: "Success", Data: [featured, category] });
+    console.log("category:", category);
+    const product = new Product({
+      name,
+      brand,
+      category,
+      unit,
+      weight,
+      price,
+      discountPrice,
+      stock,
+      isFeatured: featured,
+      description,
+      image,
+    });
+    await product.save();
+    res.status(201).json({ message: "Success", Data: [featured] });
   } catch (err) {
     res.status(500).json({ status: 500, message: err.message });
+    console.log("ERROR:", err.message);
   }
+};
+
+export const getCategory = async function (req, res) {
+  const category = await Category.find();
+  res.status(200).json({ status: 200, category });
 };
