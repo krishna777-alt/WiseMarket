@@ -1,5 +1,9 @@
 import { useState } from "react";
 import API from "../api/axios";
+import { useEffect } from "react";
+
+import LoadingSpiner from "./../Components/LoadingSpinner";
+// import axios from "axios";
 
 function Header() {
   return (
@@ -12,7 +16,9 @@ function Header() {
   );
 }
 
-const ProductUpload = () => {
+function ProductUpload() {
+  const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState([]);
   const [productData, setProductData] = useState({
     name: "",
     brand: "",
@@ -26,7 +32,6 @@ const ProductUpload = () => {
     description: "",
   });
   const [image, setImage] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     setProductData({
@@ -87,26 +92,55 @@ const ProductUpload = () => {
     }
   }
 
+  useEffect(() => {
+    async function getCategoriesData() {
+      try {
+        setLoading(true);
+        const response = await API.get("/client/getCategories");
+        setCategories(response?.data?.category || []);
+      } catch (err) {
+        console.error("Failed to load categories", err);
+      } finally {
+        setLoading(false); // ✅ move here
+      }
+    }
+
+    getCategoriesData();
+  }, []);
+
+  console.log("Catego", categories);
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-100 p-6 md:p-12">
-      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-10">
-        {/* Header */}
-        <Header />
+      {loading ? (
+        <LoadingSpiner />
+      ) : (
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl p-8 md:p-10">
+          {/* Header */}
+          <Header />
 
-        {/* Form */}
-        <ProductForm
-          onChange={handleChange}
-          onSubmit={handleSubmit}
-          setImage={handleImageChange}
-          productData={productData}
-          loading={loading}
-        />
-      </div>
+          {/* Form */}
+          <ProductForm
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            setImage={handleImageChange}
+            productData={productData}
+            loading={loading}
+            categories={categories}
+          />
+        </div>
+      )}
     </div>
   );
-};
+}
 
-function ProductForm({ onChange, onSubmit, setImage, productData, loading }) {
+function ProductForm({
+  onChange,
+  onSubmit,
+  setImage,
+  productData,
+  loading,
+  categories,
+}) {
   return (
     <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Name */}
@@ -151,11 +185,20 @@ function ProductForm({ onChange, onSubmit, setImage, productData, loading }) {
           className="w-full rounded-xl border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
         >
           <option>Select Category</option>
-          <option>Fruits</option>
-          <option>Vegetables</option>
+
+          {categories.length > 0 ? (
+            categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))
+          ) : (
+            <option disabled>Loading categories...</option>
+          )}
+          {/* <option>Vegetables</option>
           <option>Dairy</option>
           <option>Bakery</option>
-          <option>Beverages</option>
+          <option>Beverages</option> */}
         </select>
       </div>
 
@@ -170,6 +213,7 @@ function ProductForm({ onChange, onSubmit, setImage, productData, loading }) {
           onChange={onChange}
           className="w-full rounded-xl border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
         >
+          <option>Select Unit</option>
           <option>kg</option>
           <option>g</option>
           <option>lb</option>
