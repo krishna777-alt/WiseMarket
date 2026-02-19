@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import slugify from "slugify";
 
 const productSchema = new mongoose.Schema(
   {
@@ -8,11 +9,11 @@ const productSchema = new mongoose.Schema(
       trim: true,
       maxlength: [100, "Name is too long"],
     },
-    // slug: {
-    //   type: String,
-    //   lowercase: true,
-    //   unique: true,
-    // },
+    slug: {
+      type: String,
+      lowercase: true,
+      unique: true,
+    },
     description: {
       type: String,
       required: [true, "Please provide a description"],
@@ -82,7 +83,13 @@ const productSchema = new mongoose.Schema(
 
 // Indexing for faster searches on common queries
 productSchema.index({ name: "text", brand: "text" });
-productSchema.index({ slug: 1 });
+// productSchema.index({ slug: 1 });
+
+productSchema.pre("save", function () {
+  if (this.isModified("name")) {
+    this.slug = slugify(this.name, { lower: true, strict: true });
+  }
+});
 
 const Product = mongoose.model("Product", productSchema);
 
