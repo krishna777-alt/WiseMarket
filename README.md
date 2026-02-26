@@ -1,4 +1,10 @@
+⚠️ Project Status: Under Active Development
 
+This project is currently under active development.
+Some features may be incomplete, experimental, or subject to change.
+Bugs or unexpected behavior may occur as new updates are being implemented.
+The codebase may change frequently as improvements and new features are added.
+Use this project for learning and testing purposes at this stage.
 # 🛒 WiseMarket – Modern MERN Grocery Web Application
 
 WiseMarket is a full-stack modern grocery e-commerce web application built using the MERN stack.  
